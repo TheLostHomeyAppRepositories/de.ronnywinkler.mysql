@@ -1,0 +1,19 @@
+{
+    "pair": {
+        "db": {
+            "title": "Datenbankserver verbinden",
+            "server_settings": "Verbindungs-Einstellungen",
+            "host": "Server:",
+            "port": "Port:",
+            "user": "Benutzer",
+            "pw": "Passwort",
+            "check": "Verbindung prüfen",
+            "connection_ok": "Verbindung erfolgreich",
+            "connection_error": "Verbindung nicht möglich"
+        }
+    },
+    "query": {
+        "db": "SQL-Datenbank",
+        "error": "Fehler in SQL-Abfrage"
+    }
+}

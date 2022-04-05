@@ -1,0 +1,36 @@
+{
+  "id": "de.ronnywinkler.mysql",
+  "version": "0.0.1",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "name": {
+    "en": "MySQL",
+    "de": "MySQL"
+  },
+  "description": {
+    "en": "Access your MySQL database from Homey",
+    "de": "Verwende deine MySQL-Datenbank in Homey"
+  },
+  "category": [
+    "tools"
+  ],
+  "author": {
+    "name": "Ronny Winkler",
+    "email": "ronny.winkler@web.de"
+  },
+  "brandColor":"#00678F",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
+  "source": "https://github.com/RonnyWinkler/homey.mysql",
+  "homeyCommunityTopicId": 0,
+  "permissions": [],
+  "contributing": {
+      "donate": {
+          "paypal": {
+              "username": "winklerronny"
+          }
+      }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "de.ronnywinkler.mysql",
+  "version": "0.0.1",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "name": {
+    "en": "MySQL",
+    "de": "MySQL"
+  },
+  "description": {
+    "en": "Access your MySQL database from Homey",
+    "de": "Verwende deine MySQL-Datenbank in Homey"
+  },
+  "category": [
+    "tools"
+  ],
+  "author": {
+    "name": "Ronny Winkler",
+    "email": "ronny.winkler@web.de"
+  },
+  "brandColor": "#00678F",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
+  "source": "https://github.com/RonnyWinkler/homey.mysql",
+  "homeyCommunityTopicId": 0,
+  "permissions": [],
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "winklerronny"
+      }
+    }
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "query_result",
+        "title": {
+          "en": "Result of executed SQL query",
+          "de": "Ergebnis eines ausgeführten SQL-Befehls"
+        },
+        "hint": {
+          "en": "Triggers when the SQL query was executed and delivers the result as token.",
+          "de": "Wird ausgelöst, wenn der SQL-Befehl ausgeführt wurde und liefert das Ergebnis als Token."
+        },
+        "tokens": [
+          {
+            "name": "id",
+            "type": "string",
+            "title": {
+              "en": "Query ID",
+              "de": "Abfrage-ID"
+            }
+          },
+          {
+            "name": "value_text",
+            "type": "string",
+            "title": {
+              "en": "Result as text (1st value)",
+              "de": "Ergebnis als Text (1. Wert)"
+            }
+          },
+          {
+            "name": "value_number",
+            "type": "number",
+            "title": {
+              "en": "Result as number (1st value)",
+              "de": "Ergebnis als Zahl (1. Wert)"
+            }
+          },
+          {
+            "name": "result_text",
+            "type": "string",
+            "title": {
+              "en": "Result as text (JSON as text)",
+              "de": "Ergebnis als Text (JSON als Text)"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=db"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "post_query",
+        "title": {
+          "en": "SQL command",
+          "de": "SQL Befehl"
+        },
+        "titleFormatted": {
+          "en": "Executes the SQL query with ID [[id]]: [[query]].",
+          "de": "Führt den SQL-Befehl mit ID [[id]] aus: [[query]]."
+        },
+        "hint": {
+          "en": "Use this action for SQL querys. An ID must be specified to evaluate the result. In the flow event, the response can be read via the ID.",
+          "de": "Verwende diese Aktion für SQL-Abfragen. Zum Auswerten des Ergebnisses muss kann eine ID angegeben werden. Im Flow-Ereignis kann die Antwort über die ID gelesen werden."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=db"
+          },
+          {
+            "name": "query",
+            "type": "text",
+            "placeholder": {
+              "en": "INSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...);"
+            },
+            "title": {
+              "en": "SQL query",
+              "de": "SQL-Befehl"
+            }
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "placeholder": {
+              "en": "Query ID",
+              "de": "Abfrage-ID"
+            },
+            "title": {
+              "en": "ID",
+              "de": "ID"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "id": "db",
+      "name": {
+        "en": "Database",
+        "de": "Datenbank"
+      },
+      "images": {
+        "large": "/drivers/db/assets/images/large.png",
+        "small": "/drivers/db/assets/images/small.png"
+      },
+      "class": "sensor",
+      "connectivity": [
+        "lan"
+      ],
+      "capabilities": [],
+      "pair": [
+        {
+          "id": "server",
+          "navigation": {
+            "next": "list_my_devices"
+          }
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices",
+            "prev": "server"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ]
+    }
+  ]
+}

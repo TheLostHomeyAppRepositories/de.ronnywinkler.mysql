@@ -1,0 +1,49 @@
+{
+    "id": "query_result",
+    "title": {
+        "en": "Result of executed SQL query",
+        "de": "Ergebnis eines ausgeführten SQL-Befehls"
+    },
+    "hint": {
+        "en": "Triggers when the SQL query was executed and delivers the result as token.",
+        "de": "Wird ausgelöst, wenn der SQL-Befehl ausgeführt wurde und liefert das Ergebnis als Token."
+    },
+    "tokens": [{
+            "name": "id",
+            "type": "string",
+            "title": {
+                "en": "Query ID",
+                "de": "Abfrage-ID"
+            }
+        },
+        {
+            "name": "value_text",
+            "type": "string",
+            "title": {
+                "en": "Result as text (1st value)",
+                "de": "Ergebnis als Text (1. Wert)"
+            }
+        },
+        {
+            "name": "value_number",
+            "type": "number",
+            "title": {
+                "en": "Result as number (1st value)",
+                "de": "Ergebnis als Zahl (1. Wert)"
+            }
+        },
+        {
+            "name": "result_text",
+            "type": "string",
+            "title": {
+                "en": "Result as text (JSON as text)",
+                "de": "Ergebnis als Text (JSON als Text)"
+            }
+        }
+    ],
+    "args": [{
+        "name": "device",
+        "type": "device",
+        "filter": "driver_id=db"
+    }]
+}
