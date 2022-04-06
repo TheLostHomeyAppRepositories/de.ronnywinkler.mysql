@@ -12,7 +12,10 @@ class db extends Homey.Device {
 
         // Register Flow-Trigger
         this._flowTriggerQueryResult = this.homey.flow.getDeviceTriggerCard("query_result");
+        this._flowTriggerQueryResult.registerRunListener(async (args, state) => {
 
+            return ( !args.id || args.id === state.id);
+        });
     } // end onInit
 
     async updateCapabilities(){
@@ -43,7 +46,7 @@ class db extends Homey.Device {
         };
         try{
             let query = args.query;
-            let parsedQuery = query.replace(/(\d{2})\-(\d{2})\-(\d{4})/g, "$3-$2-$1");
+            let parsedQuery = this.parseQuery(query);
             this.log("Modified Query: " + parsedQuery)
             let result = await mysqlApi.query(settings, parsedQuery);
             this.log("Result: ");
@@ -65,6 +68,110 @@ class db extends Homey.Device {
         }
     }
 
+    parseQuery(query){
+        // Format all dates from DD-MM-YYYY to YYYY-MM-DD
+        let parsedQuery = query.replace(/(\d{2})\-(\d{2})\-(\d{4})/g, "$3-$2-$1");
+
+        // do date calculations
+        let regex = /\[date[+-]\d+[dmy]\]/gi
+        let result, indices = [];
+        while ( (result = regex.exec(parsedQuery)) ) {
+            indices.push(result);
+        }
+        // this.log(indices);
+
+        if (indices.length > 0){
+            for (let i=0; i<indices.length; i++){
+                let date = this.getTargetDate(indices[i][0]);
+                parsedQuery = parsedQuery.replace( indices[i][0], date );
+            }
+        }
+
+        return parsedQuery;
+    }
+
+    getTargetDate(string){
+        let tz  = this.homey.clock.getTimezone();
+        let now = new Date().toLocaleString('de-DE', 
+        { 
+            hour12: false, 
+            timeZone: tz,
+            hour: "2-digit",
+            minute: "2-digit",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        });
+
+        let result;
+        let regex;
+
+        regex = /[+-][0123456789]+[dmy]/;
+        result = regex.exec(string);
+        string = result[0];
+
+        regex = /\d+/;
+        result = regex.exec(string);
+        let nr = parseInt(result[0]);
+
+        regex = /[+-]/;
+        result = regex.exec(string);
+        let sign = result[0];
+
+        regex = /[dmy]/;
+        result = regex.exec(string);
+        let type = result[0];
+
+        if (sign == '-'){
+            nr = nr * -1;
+        }
+        let newDate;
+        if (type == 'd'){
+            newDate = this.addDays(now, nr);
+        }
+        if (type == 'm'){
+            newDate = this.addMonths(now, nr);
+        }
+        if (type == 'y'){
+            newDate = this.addYears(now, nr);
+        }
+        let newDateStr = newDate.toLocaleString('de-DE', 
+        { 
+            hour12: false, 
+            timeZone: tz,
+            hour: "2-digit",
+            minute: "2-digit",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        });
+        let date = newDateStr.split(", ")[0];
+        date = date.split("/")[2] + "-" + date.split("/")[0] + "-" + date.split("/")[1]; 
+        return date;
+    }
+
+    addDays(date, days) {
+        var result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+    }
+
+    addMonths(date, months) {
+        let result = new Date(date);
+        let d = result.getDate();
+        result.setMonth(result.getMonth() + months);
+        if (result.getDate() != d) {
+          result.setDate(0);
+        }
+        return result;
+    }
+
+    addYears(date, years){
+        let result = new Date(date);
+        result.setFullYear(result.getFullYear() + years);
+        return result;
+    }
+
     async triggerQueryResult(queryId, result){
         let value_text = '';
         let value_number = 0;
@@ -72,8 +179,16 @@ class db extends Homey.Device {
         try{
             let table = result[0];
             let line = table[0];
-            let value = Object.values(line)[0];
-
+            let value;
+            let success;
+            if (line){
+                success = true;
+                value = Object.values(line)[0];
+            }
+            else{
+                success = false;
+                value = '';
+            }
             if (typeof value === 'number'){
                 value_number = value;
                 value_text = value.toString();
@@ -91,9 +206,13 @@ class db extends Homey.Device {
                 id: queryId,
                 result_text:  JSON.stringify(table),
                 value_text: value_text,
-                value_number: value_number 
-            }
-            this._flowTriggerQueryResult.trigger(this, tokens)
+                value_number: value_number,
+                success: success
+            };
+            let state = {
+                id: queryId
+            };
+            this._flowTriggerQueryResult.trigger(this, tokens, state)
                 .catch(this.error);
         }
         catch (error){

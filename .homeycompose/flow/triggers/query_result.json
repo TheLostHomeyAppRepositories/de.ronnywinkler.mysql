@@ -4,9 +4,13 @@
         "en": "Result of executed SQL query",
         "de": "Ergebnis eines ausgeführten SQL-Befehls"
     },
+    "titleFormatted":{
+        "en": "Result of executed SQL query with Query ID [[id]]",
+        "de": "Ergebnis eines ausgeführten SQL-Befehls zur Abfrage-ID [[id]]"
+    },
     "hint": {
-        "en": "Triggers when the SQL query was executed and delivers the result as token.",
-        "de": "Wird ausgelöst, wenn der SQL-Befehl ausgeführt wurde und liefert das Ergebnis als Token."
+        "en": "Triggers when the SQL query was executed and delivers the result as token. The execution can be filtered by Query ID.",
+        "de": "Wird ausgelöst, wenn der SQL-Befehl ausgeführt wurde und liefert das Ergebnis als Token. Die Ausführung kann mit einer Abfrage-ID gefiltert werden."
     },
     "tokens": [{
             "name": "id",
@@ -39,11 +43,33 @@
                 "en": "Result as text (JSON as text)",
                 "de": "Ergebnis als Text (JSON als Text)"
             }
+        },
+        {
+            "name": "success",
+            "type": "boolean",
+            "title": {
+                "en": "Query successful.",
+                "de": "Abfrage erfolgreich."
+            }
         }
     ],
-    "args": [{
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=db"
-    }]
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=db"
+        },
+        {
+            "name": "id",
+            "type": "text",
+            "title": { 
+                "en": "Query ID",
+                "de": "Abfrage-ID" 
+            },
+            "placeholder": { 
+                "en": "Query ID",
+                "de": "Abfrage-ID" 
+            }
+        }
+    ]
 }

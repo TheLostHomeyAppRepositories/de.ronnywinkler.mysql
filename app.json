@@ -42,9 +42,13 @@
           "en": "Result of executed SQL query",
           "de": "Ergebnis eines ausgeführten SQL-Befehls"
         },
+        "titleFormatted": {
+          "en": "Result of executed SQL query with Query ID [[id]]",
+          "de": "Ergebnis eines ausgeführten SQL-Befehls zur Abfrage-ID [[id]]"
+        },
         "hint": {
-          "en": "Triggers when the SQL query was executed and delivers the result as token.",
-          "de": "Wird ausgelöst, wenn der SQL-Befehl ausgeführt wurde und liefert das Ergebnis als Token."
+          "en": "Triggers when the SQL query was executed and delivers the result as token. The execution can be filtered by Query ID.",
+          "de": "Wird ausgelöst, wenn der SQL-Befehl ausgeführt wurde und liefert das Ergebnis als Token. Die Ausführung kann mit einer Abfrage-ID gefiltert werden."
         },
         "tokens": [
           {
@@ -78,6 +82,14 @@
               "en": "Result as text (JSON as text)",
               "de": "Ergebnis als Text (JSON als Text)"
             }
+          },
+          {
+            "name": "success",
+            "type": "boolean",
+            "title": {
+              "en": "Query successful.",
+              "de": "Abfrage erfolgreich."
+            }
           }
         ],
         "args": [
@@ -85,6 +97,18 @@
             "name": "device",
             "type": "device",
             "filter": "driver_id=db"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "title": {
+              "en": "Query ID",
+              "de": "Abfrage-ID"
+            },
+            "placeholder": {
+              "en": "Query ID",
+              "de": "Abfrage-ID"
+            }
           }
         ]
       }
@@ -101,8 +125,8 @@
           "de": "Führt den SQL-Befehl mit ID [[id]] aus: [[query]]."
         },
         "hint": {
-          "en": "Use this action for SQL querys. An ID must be specified to evaluate the result. In the flow event, the response can be read via the ID.",
-          "de": "Verwende diese Aktion für SQL-Abfragen. Zum Auswerten des Ergebnisses muss kann eine ID angegeben werden. Im Flow-Ereignis kann die Antwort über die ID gelesen werden."
+          "en": "Use this action for SQL querys. An ID must be specified to evaluate the result. In the flow event, the response can be read via the Query ID. Use '[date-1d]', '[date-1m]' oder '[date-1y]' for calculation of a date based on the current date using a positive/negative difference in days, moths or years.",
+          "de": "Verwende diese Aktion für SQL-Abfragen. Zum Auswerten des Ergebnisses muss kann eine ID angegeben werden. Im Flow-Ereignis kann die Antwort über die Abfrage-ID gelesen werden. Verwende '[date-1d]', '[date-1m]' oder '[date-1y]' für die Berechnung eines Datums auf Basis des aktuellen Datums unter Verwendung der positiven/negativen Differenz in Tagen, Monaten oder Jahren."
         },
         "args": [
           {
