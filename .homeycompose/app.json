@@ -1,6 +1,6 @@
 {
   "id": "de.ronnywinkler.mysql",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -24,7 +24,7 @@
     "large": "/assets/images/large.png"
   },
   "source": "https://github.com/RonnyWinkler/homey.mysql",
-  "homeyCommunityTopicId": 0,
+  "homeyCommunityTopicId": 62459,
   "permissions": [],
   "contributing": {
       "donate": {

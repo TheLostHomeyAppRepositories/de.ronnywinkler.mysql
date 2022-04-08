@@ -13,7 +13,10 @@ class db extends Homey.Device {
         // Register Flow-Trigger
         this._flowTriggerQueryResult = this.homey.flow.getDeviceTriggerCard("query_result");
         this._flowTriggerQueryResult.registerRunListener(async (args, state) => {
-
+            return ( !args.id || args.id === state.id);
+        });
+        this._flowTriggerPostResult = this.homey.flow.getDeviceTriggerCard("post_result");
+        this._flowTriggerPostResult.registerRunListener(async (args, state) => {
             return ( !args.id || args.id === state.id);
         });
     } // end onInit
@@ -178,42 +181,67 @@ class db extends Homey.Device {
 
         try{
             let table = result[0];
-            let line = table[0];
-            let value;
-            let success;
-            if (line){
-                success = true;
-                value = Object.values(line)[0];
-            }
-            else{
-                success = false;
-                value = '';
-            }
-            if (typeof value === 'number'){
-                value_number = value;
-                value_text = value.toString();
-            }
-            if (typeof value === 'string'){
-                value_text = value;
-                
-                value_number = parseFloat(value);
-                if (isNaN(value_number)){
-                    value_number = 0;
-                }
-            }
 
-            let tokens = {
-                id: queryId,
-                result_text:  JSON.stringify(table),
-                value_text: value_text,
-                value_number: value_number,
-                success: success
-            };
-            let state = {
-                id: queryId
-            };
-            this._flowTriggerQueryResult.trigger(this, tokens, state)
-                .catch(this.error);
+            if (table.length == undefined) {
+                // Insert/Update-Result
+                let success = false;
+                if (table.affectedRows > 0){
+                    success = true;
+                }
+                let tokens = {
+                    id: queryId,
+                    result_text:  JSON.stringify(table),
+                    affected_rows: table.affectedRows,
+                    insert_id: table.insertId,
+                    field_count: table.fieldCount,
+                    info: table.info,
+                    success: success
+                };
+                let state = {
+                    id: queryId
+                };
+                this._flowTriggerPostResult.trigger(this, tokens, state)
+                    .catch(this.error);
+            }
+            else {
+                // SELECT-Result
+                let line = table[0];
+                let value;
+                let success;
+                if (line){
+                    success = true;
+                    value = Object.values(line)[0];
+                }
+                else{
+                    success = false;
+                    value = '';
+                }
+                if (typeof value === 'number'){
+                    value_number = value;
+                    value_text = value.toString();
+                }
+                if (typeof value === 'string'){
+                    value_text = value;
+                    
+                    value_number = parseFloat(value);
+                    if (isNaN(value_number)){
+                        value_number = 0;
+                    }
+                }
+
+                let tokens = {
+                    id: queryId,
+                    result_text:  JSON.stringify(table),
+                    value_text: value_text,
+                    value_number: value_number,
+                    success: success
+                };
+                let state = {
+                    id: queryId
+                };
+                this._flowTriggerQueryResult.trigger(this, tokens, state)
+                    .catch(this.error);
+            }
         }
         catch (error){
             this.error(error.message);

@@ -2,5 +2,9 @@
   "0.0.1": {
     "en": "Initial release",
     "de": "Initiales Release"
+  },
+  "0.0.2": {
+    "en": "Added flow trigger for INSERT/UPDATE result. Added forum ID",
+    "de": "Flow-Trigger für INSERT/UPDATE-Ergebnis. Forum-ID ergänzt."
   }
 }

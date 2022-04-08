@@ -1,0 +1,91 @@
+{
+    "id": "post_result",
+    "title": {
+        "en": "Result of executed SQL POST query (insert/update)",
+        "de": "Ergebnis eines ausgeführten SQL-POST-Befehls (Insert/Update)"
+    },
+    "titleFormatted":{
+        "en": "Result of executed SQL POST query (insert/update) with Query ID [[id]]",
+        "de": "Ergebnis eines ausgeführten SQL-POST-Befehls (Insert/Update) zur Abfrage-ID [[id]]"
+    },
+    "hint": {
+        "en": "Triggers when the SQL POST query (insert/update) was executed and delivers the result as token. The execution can be filtered by Query ID.",
+        "de": "Wird ausgelöst, wenn der SQL-POST-Befehl (Insert/Update) ausgeführt wurde und liefert das Ergebnis als Token. Die Ausführung kann mit einer Abfrage-ID gefiltert werden."
+    },
+    "tokens": [{
+            "name": "id",
+            "type": "string",
+            "title": {
+                "en": "Query ID",
+                "de": "Abfrage-ID"
+            }
+        },
+        {
+            "name": "affected_rows",
+            "type": "number",
+            "title": {
+                "en": "Affected rows",
+                "de": "Betroffene Zeilen"
+            }
+        },
+        {
+            "name": "field_count",
+            "type": "number",
+            "title": {
+                "en": "Field count",
+                "de": "Anzahl Felder"
+            }
+        },
+        {
+            "name": "insert_id",
+            "type": "number",
+            "title": {
+                "en": "Insert ID",
+                "de": "Einfüge-ID"
+            }
+        },
+        {
+            "name": "info",
+            "type": "string",
+            "title": {
+                "en": "Info",
+                "de": "Information"
+            }
+        },
+        {
+            "name": "result_text",
+            "type": "string",
+            "title": {
+                "en": "Result as text (JSON as text)",
+                "de": "Ergebnis als Text (JSON als Text)"
+            }
+        },
+        {
+            "name": "success",
+            "type": "boolean",
+            "title": {
+                "en": "Query successful.",
+                "de": "Abfrage erfolgreich."
+            }
+        }
+    ],
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=db"
+        },
+        {
+            "name": "id",
+            "type": "text",
+            "title": { 
+                "en": "Query ID",
+                "de": "Abfrage-ID" 
+            },
+            "placeholder": { 
+                "en": "Query ID",
+                "de": "Abfrage-ID" 
+            }
+        }
+    ]
+}
