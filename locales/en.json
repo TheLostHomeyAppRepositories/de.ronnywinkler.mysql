@@ -1,0 +1,19 @@
+{
+    "pair": {
+        "db": {
+            "title": "Connect database server",
+            "server_settings": "Connection settings",
+            "host": "Server:",
+            "port": "Port:",
+            "user": "User",
+            "pw": "Password",
+            "check": "Check connection",
+            "connection_ok": "Connection successful",
+            "connection_error": "Connection not possible"
+        }
+    },
+    "query": {
+        "db": "SQL database",
+        "error": "Error in SQL query"
+    }
+}
