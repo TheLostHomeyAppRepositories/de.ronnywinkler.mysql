@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "de.ronnywinkler.mysql",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -39,12 +39,12 @@
       {
         "id": "post_result",
         "title": {
-          "en": "Result of executed SQL POST query (insert/update)",
-          "de": "Ergebnis eines ausgeführten SQL-POST-Befehls (Insert/Update)"
+          "en": "A SQL POST query (insert/update) was executed.",
+          "de": "Eine SQL-POST-Abfrage (Insert/Update) wurde ausgeführt."
         },
         "titleFormatted": {
-          "en": "Result of executed SQL POST query (insert/update) with Query ID [[id]]",
-          "de": "Ergebnis eines ausgeführten SQL-POST-Befehls (Insert/Update) zur Abfrage-ID [[id]]"
+          "en": "The SQL POST query (insert/update) was executed with id [[id]].",
+          "de": "Die SQL-POST-Abfrage (Insert/Update) mit ID [[id]] wurde ausgeführt."
         },
         "hint": {
           "en": "Triggers when the SQL POST query (insert/update) was executed and delivers the result as token. The execution can be filtered by Query ID.",
@@ -131,12 +131,12 @@
       {
         "id": "query_result",
         "title": {
-          "en": "Result of executed SQL query",
-          "de": "Ergebnis eines ausgeführten SQL-Befehls"
+          "en": "A SQL query was executed.",
+          "de": "Eine SQL Abfrage wurde ausgeführt."
         },
         "titleFormatted": {
-          "en": "Result of executed SQL query with Query ID [[id]]",
-          "de": "Ergebnis eines ausgeführten SQL-Befehls zur Abfrage-ID [[id]]"
+          "en": "The SQL query was executed with id [[id]].",
+          "de": "Die SQl-Abfrage mit ID [[id]] wurde ausgeführt."
         },
         "hint": {
           "en": "Triggers when the SQL query was executed and delivers the result as token. The execution can be filtered by Query ID.",
@@ -209,8 +209,8 @@
       {
         "id": "post_query",
         "title": {
-          "en": "SQL command",
-          "de": "SQL Befehl"
+          "en": "Execute SQL query.",
+          "de": "SQL-Befehl ausführen."
         },
         "titleFormatted": {
           "en": "Executes the SQL query with ID [[id]]: [[query]].",

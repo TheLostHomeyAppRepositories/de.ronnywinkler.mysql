@@ -10,5 +10,13 @@
   "0.0.3": {
     "en": "Added english translation",
     "de": "Englische Übersetzung ergänzt."
+  },
+  "0.0.4": {
+    "en": "Adaptet date convertion to FW 7.4.x",
+    "de": "Datums-Konvertierung angepasst an FW 7.4.0."
+  },
+  "0.0.5": {
+    "en": "Adaptet trigger descriptions",
+    "de": "Trigger-Bezeichnungen angepasst."
   }
 }

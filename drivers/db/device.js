@@ -95,7 +95,7 @@ class db extends Homey.Device {
 
     getTargetDate(string){
         let tz  = this.homey.clock.getTimezone();
-        let now = new Date().toLocaleString('de-DE', 
+        let now = new Date().toLocaleString('en-US', 
         { 
             hour12: false, 
             timeZone: tz,
@@ -138,7 +138,7 @@ class db extends Homey.Device {
         if (type == 'y'){
             newDate = this.addYears(now, nr);
         }
-        let newDateStr = newDate.toLocaleString('de-DE', 
+        let newDateStr = newDate.toLocaleString('en-US', 
         { 
             hour12: false, 
             timeZone: tz,

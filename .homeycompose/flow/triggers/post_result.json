@@ -1,12 +1,12 @@
 {
     "id": "post_result",
     "title": {
-        "en": "Result of executed SQL POST query (insert/update)",
-        "de": "Ergebnis eines ausgeführten SQL-POST-Befehls (Insert/Update)"
+        "en": "A SQL POST query (insert/update) was executed.",
+        "de": "Eine SQL-POST-Abfrage (Insert/Update) wurde ausgeführt."
     },
     "titleFormatted":{
-        "en": "Result of executed SQL POST query (insert/update) with Query ID [[id]]",
-        "de": "Ergebnis eines ausgeführten SQL-POST-Befehls (Insert/Update) zur Abfrage-ID [[id]]"
+        "en": "The SQL POST query (insert/update) was executed with id [[id]].",
+        "de": "Die SQL-POST-Abfrage (Insert/Update) mit ID [[id]] wurde ausgeführt."
     },
     "hint": {
         "en": "Triggers when the SQL POST query (insert/update) was executed and delivers the result as token. The execution can be filtered by Query ID.",

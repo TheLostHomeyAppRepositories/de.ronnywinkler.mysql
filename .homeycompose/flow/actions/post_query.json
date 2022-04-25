@@ -1,8 +1,8 @@
 {
     "id": "post_query",
     "title": {
-        "en": "SQL command",
-        "de": "SQL Befehl"
+        "en": "Execute SQL query.",
+        "de": "SQL-Befehl ausführen."
     },
     "titleFormatted": {
         "en": "Executes the SQL query with ID [[id]]: [[query]].",

@@ -1,12 +1,12 @@
 {
     "id": "query_result",
     "title": {
-        "en": "Result of executed SQL query",
-        "de": "Ergebnis eines ausgeführten SQL-Befehls"
+        "en": "A SQL query was executed.",
+        "de": "Eine SQL Abfrage wurde ausgeführt."
     },
     "titleFormatted":{
-        "en": "Result of executed SQL query with Query ID [[id]]",
-        "de": "Ergebnis eines ausgeführten SQL-Befehls zur Abfrage-ID [[id]]"
+        "en": "The SQL query was executed with id [[id]].",
+        "de": "Die SQl-Abfrage mit ID [[id]] wurde ausgeführt."
     },
     "hint": {
         "en": "Triggers when the SQL query was executed and delivers the result as token. The execution can be filtered by Query ID.",
