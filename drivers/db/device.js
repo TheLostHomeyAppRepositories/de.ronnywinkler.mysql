@@ -67,7 +67,7 @@ class db extends Homey.Device {
                             ': ' +
                             this.homey.__('query.error') + 
                             ': '+ error.message;
-            this.homey.notifications.createNotification({excerpt: message });
+            this.homey.notifications.createNotification({excerpt: message }).catch(error => {this.error('Error sending notification: '+error.message)});
         }
     }
 

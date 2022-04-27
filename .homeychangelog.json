@@ -18,5 +18,9 @@
   "0.0.5": {
     "en": "Adaptet trigger descriptions",
     "de": "Trigger-Bezeichnungen angepasst."
+  },
+  "0.0.6": {
+    "en": "Added exception handling for FW 7.4.x",
+    "de": "Fehlerbeandlung für FW 7.4.x ergänzt"
   }
 }
