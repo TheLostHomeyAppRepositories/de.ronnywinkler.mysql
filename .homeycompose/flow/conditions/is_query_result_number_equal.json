@@ -1,0 +1,47 @@
+{
+    "title": {
+        "en": "The SQL query result (as number) !{{is|isn't}}",
+        "de": "Das SQL Abfrageergebnis (als Zahl) !{{ist|ist nicht}}"
+    },
+    "titleFormatted": {
+        "en": "The result (as number) of SQL query [[query]] with ID [[id]] !{{is|isn't}} [[value]]",
+        "de": "Das Ergebnis (als Zahl) der SQL-Abfrage [[query]] mit ID [[id]] !{{ist|ist nicht}} [[value]]"
+    },
+    "hint": {
+        "en": "The result of the SQL query. Select a single numeric field to compare.",
+        "de": "Das Ergebnis der SQL-Abfrage. Selektiere ein einzelnes numerisches Feld für den Vergleich."
+    },
+    "args": [{
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=db"
+        },
+        {
+            "name": "value",
+            "type": "number"
+        },
+        {
+            "name": "query",
+            "type": "text",
+            "placeholder": {
+                "en": "SELECT column_name FROM table_name order by column_name DESC LIMIT 1;"
+            },
+            "title": {
+                "en": "SQL query",
+                "de": "SQL-Befehl"
+            }
+        },
+        {
+            "name": "id",
+            "type": "text",
+            "placeholder": {
+                "en": "Query ID",
+                "de": "Abfrage-ID"
+            },
+            "title": {
+                "en": "ID",
+                "de": "ID"
+            }
+        }
+    ]
+}

@@ -37,7 +37,7 @@ class db extends Homey.Device {
         this.log('device deleted:', id);
     } // end onDeleted
 
-    async postQuery(args){
+    async postQuery(args, trigger = true){
         this.log("Action post_query started.");
         this.log("SQL query: " + args.query);
         let settings = {
@@ -54,7 +54,10 @@ class db extends Homey.Device {
             let result = await mysqlApi.query(settings, parsedQuery);
             this.log("Result: ");
             this.log(result[0]);
-            this.triggerQueryResult(args.id, result);
+            if (trigger){
+                this.triggerQueryResult(args.id, result);
+            }
+            return result;
         }
         catch (error){
             this.log("Error: "+error.message);

@@ -22,5 +22,9 @@
   "0.0.6": {
     "en": "Added exception handling for FW 7.4.x",
     "de": "Fehlerbeandlung für FW 7.4.x ergänzt"
+  },
+  "0.0.7": {
+    "en": "Use SQL result as flow conditions",
+    "de": "SQL Ergebnis als Flow-Bedingung verwenden"
   }
 }
