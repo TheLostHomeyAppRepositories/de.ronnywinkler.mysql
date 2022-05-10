@@ -1,0 +1,12 @@
+{
+    "type": "string",
+    "title": {
+        "en": "SQL query result als JSON",
+        "de": "SQL-Abfrageergebnis als JSON"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": null,
+    "insights": false,
+    "icon": "/assets/query_result_json.svg"
+}

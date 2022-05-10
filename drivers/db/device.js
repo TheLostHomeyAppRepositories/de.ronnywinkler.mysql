@@ -23,6 +23,18 @@ class db extends Homey.Device {
 
     async updateCapabilities(){
         // add new capabilities
+        if (!this.hasCapability('query_result_json')){
+            await this.addCapability('query_result_json');
+        }
+        if (!this.hasCapability('query_result_value_number')){
+            await this.addCapability('query_result_value_number');
+        }
+        if (!this.hasCapability('query_result_value_text')){
+            await this.addCapability('query_result_value_text');
+        }
+        if (!this.hasCapability('query_successful')){
+            await this.addCapability('query_successful');
+        }
 
     }
 
@@ -203,6 +215,12 @@ class db extends Homey.Device {
                 let state = {
                     id: queryId
                 };
+
+                await this.setCapabilityValue("query_result_json", tokens.result_text).catch(error => this.error(error));
+                await this.setCapabilityValue("query_successful", tokens.success).catch(error => this.error(error));
+                await this.setCapabilityValue("query_result_value_number", 0).catch(error => this.error(error));
+                await this.setCapabilityValue("query_result_value_text", '').catch(error => this.error(error));
+
                 this._flowTriggerPostResult.trigger(this, tokens, state)
                     .catch(this.error);
             }
@@ -242,6 +260,12 @@ class db extends Homey.Device {
                 let state = {
                     id: queryId
                 };
+
+                await this.setCapabilityValue("query_result_json", tokens.result_text).catch(error => this.error(error));
+                await this.setCapabilityValue("query_successful", tokens.success).catch(error => this.error(error));
+                await this.setCapabilityValue("query_result_value_number", value_number).catch(error => this.error(error));
+                await this.setCapabilityValue("query_result_value_text", value_text).catch(error => this.error(error));
+
                 this._flowTriggerQueryResult.trigger(this, tokens, state)
                     .catch(this.error);
             }

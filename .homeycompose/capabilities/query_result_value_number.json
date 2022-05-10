@@ -1,0 +1,12 @@
+{
+    "type": "number",
+    "title": {
+        "en": "SQL query result value as number",
+        "de": "SQL-Abfrageergebnis als Zahl"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": null,
+    "insights": false,
+    "icon": "/assets/query_result_value_number.svg"
+}

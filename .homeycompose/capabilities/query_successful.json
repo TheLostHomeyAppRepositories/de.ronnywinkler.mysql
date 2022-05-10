@@ -1,0 +1,12 @@
+{
+    "type": "boolean",
+    "title": {
+        "en": "SQL query was successful",
+        "de": "SQL-Abfrage war erfolgreich"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": null,
+    "insights": false,
+    "icon": "/assets/query_successful.svg"
+}

@@ -26,5 +26,13 @@
   "0.0.7": {
     "en": "Use SQL result as flow conditions",
     "de": "SQL Ergebnis als Flow-Bedingung verwenden"
+  },
+  "0.0.8": {
+    "en": "Flow conditions for successful query. Capabilities/token for the results.",
+    "de": "Flow-Bedingung für erfolgreiche Abfrage. Attribute/Token für Abfrageergebnis."
+  },
+  "0.0.9": {
+    "en": "Flow conditions for successful query. Capabilities/token for the results.",
+    "de": "Flow-Bedingung für erfolgreiche Abfrage. Attribute/Token für Abfrageergebnis."
   }
 }

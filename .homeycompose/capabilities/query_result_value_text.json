@@ -1,0 +1,12 @@
+{
+    "type": "string",
+    "title": {
+        "en": "SQL query result value as text",
+        "de": "SQL-Abfrageergebnis als Text"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": null,
+    "insights": false,
+    "icon": "/assets/query_result_value_text.svg"
+}

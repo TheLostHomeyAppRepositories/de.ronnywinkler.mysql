@@ -24,25 +24,36 @@ class mySQL extends Homey.App {
     this._flowConditionQueryResultNumberEqual = this.homey.flow.getConditionCard("is_query_result_number_equal")
     .registerRunListener(async (args, state) => {
       let result = await args.device.postQuery(args);
-      let value = this.parseResult(result, true);
+      let value = this.parseResult(result, 'number');
       return (value == args.value);
     })
     this._flowConditionQueryResultNumberGreater = this.homey.flow.getConditionCard("is_query_result_number_greater")
     .registerRunListener(async (args, state) => {
       let result = await args.device.postQuery(args);
-      let value = this.parseResult(result, true);
+      let value = this.parseResult(result, 'number');
       return (value > args.value);
     })
     this._flowConditionQueryResultStringEqual = this.homey.flow.getConditionCard("is_query_result_string_equal")
     .registerRunListener(async (args, state) => {
       let result = await args.device.postQuery(args);
-      let value = this.parseResult(result, false);
+      let value = this.parseResult(result, 'string');
       return (value == args.value);
+    })
+    this._flowConditionQueryResultSuccessful = this.homey.flow.getConditionCard("is_query_result_successful")
+    .registerRunListener(async (args, state) => {
+      let result = await args.device.postQuery(args);
+      let value = this.parseResult(result, 'bool');
+      return (value);
     })
     
   }
 
-  parseResult(result, as_number = true){
+  /* result_type can be:
+  * 'number'
+  * 'string'
+  * 'bool'
+  */
+  parseResult(result, result_type = 'number'){
     let value_text = '';
     let value_number = 0;
 
@@ -52,12 +63,20 @@ class mySQL extends Homey.App {
       if (table.length == undefined) {
         // Insert/Update-Result
         // Condition can not be used with post result (true/false). Condition must result in a value
-        if (as_number){
-          return 0;
+        let success = false;
+        if (table.affectedRows > 0){
+            success = true;
         }
-        else{
-          return '';
-        }
+        switch (result_type){
+          case 'bool':
+            return success;
+          case 'number':
+            return 0;
+          case 'string':
+            return '';
+          default:
+            return success;
+        }        
       }
       else {
         // SELECT-Result
@@ -69,13 +88,18 @@ class mySQL extends Homey.App {
             value = Object.values(line)[0];
         }
         else{
-          if (as_number){
-            return 0;
+          success = false;
+          switch (result_type){
+            case 'bool':
+              return success;
+            case 'number':
+              return 0;
+            case 'string':
+              return '';
+            default:
+              return success;
+          }        
           }
-          else{
-            return '';
-          }
-        }
         if (typeof value === 'number'){
             value_number = value;
             value_text = value.toString();
@@ -88,21 +112,29 @@ class mySQL extends Homey.App {
                 value_number = 0;
             }
         }
-        if (as_number){
-          return value_number;
-        }
-        else{
-          return value_text;
-        }
-      }
+        switch (result_type){
+          case 'bool':
+            return success;
+          case 'number':
+            return value_number;
+          case 'string':
+            return value_text;
+          default:
+            return success;
+        }        
+    }
     }
     catch(error){
-      if (as_number){
-        return 0;
-      }
-      else{
-        return '';
-      }
+      switch (result_type){
+        case 'bool':
+          return false;
+        case 'number':
+          return 0;
+        case 'string':
+          return '';
+        default:
+          return false;
+      }        
     }
   }
 
