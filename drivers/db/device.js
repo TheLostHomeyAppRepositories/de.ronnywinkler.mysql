@@ -67,7 +67,7 @@ class db extends Homey.Device {
             this.log("Result: ");
             this.log(result[0]);
             if (trigger){
-                this.triggerQueryResult(args.id, result);
+                await this.triggerQueryResult(args.id, result);
             }
             return result;
         }
@@ -156,7 +156,7 @@ class db extends Homey.Device {
         let newDateStr = newDate.toLocaleString('en-US', 
         { 
             hour12: false, 
-            timeZone: tz,
+            // timeZone: tz,
             hour: "2-digit",
             minute: "2-digit",
             day: "2-digit",
