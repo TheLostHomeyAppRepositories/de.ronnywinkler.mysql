@@ -42,5 +42,9 @@
   "0.0.11": {
     "en": "Advanced flow token added for the flow action 'Execute SQL query'.",
     "de": "Advanced-Flow-Token für die Flow-Aktion 'SQL-Befehl ausführen' ergänzt."
+  },
+  "0.0.12": {
+    "en": "Added exception for flow action 'Execute SQL query' to use in advanced Flows.",
+    "de": "Fehlermeldung für Flow-Aktion 'SQL-Befehl ausführen' ergänzt zur Verwendung in Advanced Flows."
   }
 }
