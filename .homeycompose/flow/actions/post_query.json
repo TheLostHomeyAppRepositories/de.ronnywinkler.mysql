@@ -41,5 +41,78 @@
                 "de": "ID"
             }
         }
-    ]
+    ],
+    "tokens": [{
+        "name": "id",
+        "type": "string",
+        "title": {
+            "en": "Query ID",
+            "de": "Abfrage-ID"
+        }
+    },
+    {
+        "name": "value_text",
+        "type": "string",
+        "title": {
+            "en": "Result as text (1st value)",
+            "de": "Ergebnis als Text (1. Wert)"
+        }
+    },
+    {
+        "name": "value_number",
+        "type": "number",
+        "title": {
+            "en": "Result as number (1st value)",
+            "de": "Ergebnis als Zahl (1. Wert)"
+        }
+    },
+    {
+        "name": "result_text",
+        "type": "string",
+        "title": {
+            "en": "Result as text (JSON as text)",
+            "de": "Ergebnis als Text (JSON als Text)"
+        }
+    },
+    {
+        "name": "success",
+        "type": "boolean",
+        "title": {
+            "en": "Query successful.",
+            "de": "Abfrage erfolgreich."
+        }
+    },
+    {
+        "name": "affected_rows",
+        "type": "number",
+        "title": {
+            "en": "Affected rows",
+            "de": "Betroffene Zeilen"
+        }
+    },
+    {
+        "name": "field_count",
+        "type": "number",
+        "title": {
+            "en": "Field count",
+            "de": "Anzahl Felder"
+        }
+    },
+    {
+        "name": "insert_id",
+        "type": "number",
+        "title": {
+            "en": "Insert ID",
+            "de": "Einfüge-ID"
+        }
+    },
+    {
+        "name": "info",
+        "type": "string",
+        "title": {
+            "en": "Info",
+            "de": "Information"
+        }
+    }
+]
 }

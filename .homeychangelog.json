@@ -38,5 +38,9 @@
   "0.0.10": {
     "en": "Fix for set token and duplicated timezone fix for [date-1d] calculation.",
     "de": "Korrektur for Token-Update und doppelte Zeitzone für [date-1d]-Berechnung."
+  },
+  "0.0.11": {
+    "en": "Advanced flow token added for the flow action 'Execute SQL query'.",
+    "de": "Advanced-Flow-Token für die Flow-Aktion 'SQL-Befehl ausführen' ergänzt."
   }
 }

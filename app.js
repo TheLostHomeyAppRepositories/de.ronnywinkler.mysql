@@ -17,7 +17,8 @@ class mySQL extends Homey.App {
     // Register Flow-Action-Listener
     this._flowActionPostQuery = this.homey.flow.getActionCard('post_query');
     this._flowActionPostQuery.registerRunListener(async (args, state) => {
-            return args.device.postQuery(args);
+            let result = await args.device.postQuery(args);
+            return await this.getQueryResultToken(args.id, result);
     });
 
     // Register Flow-Condition-Listener
@@ -138,6 +139,76 @@ class mySQL extends Homey.App {
     }
   }
 
+  async getQueryResultToken(queryId, result){
+    let value_text = '';
+    let value_number = 0;
+
+    try{
+        let table = result[0];
+
+        if (table.length == undefined) {
+            // Insert/Update-Result
+            let success = false;
+            if (table.affectedRows > 0){
+                success = true;
+            }
+            let tokens = {
+                id: queryId,
+                result_text:  JSON.stringify(table),
+                affected_rows: table.affectedRows,
+                insert_id: table.insertId,
+                field_count: table.fieldCount,
+                info: table.info,
+                success: success,
+                value_text: '',
+                value_number: 0
+            };
+            return tokens;
+        }
+        else {
+            // SELECT-Result
+            let line = table[0];
+            let value;
+            let success;
+            if (line){
+                success = true;
+                value = Object.values(line)[0];
+            }
+            else{
+                success = false;
+                value = '';
+            }
+            if (typeof value === 'number'){
+                value_number = value;
+                value_text = value.toString();
+            }
+            if (typeof value === 'string'){
+                value_text = value;
+                
+                value_number = parseFloat(value);
+                if (isNaN(value_number)){
+                    value_number = 0;
+                }
+            }
+
+            let tokens = {
+                id: queryId,
+                result_text:  JSON.stringify(table),
+                value_text: value_text,
+                value_number: value_number,
+                success: success,
+                affected_rows: 0,
+                insert_id: 0,
+                field_count: 0,
+                info: ''
+            };
+            return tokens;
+        }
+    }
+    catch (error){
+        this.error(error.message);
+    }
+  }
 }
   
 module.exports = mySQL;
