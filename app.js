@@ -20,6 +20,10 @@ class mySQL extends Homey.App {
             let result = await args.device.postQuery(args);
             return await this.getQueryResultToken(args.id, result);
     });
+    this._flowActionPostQuery = this.homey.flow.getActionCard('post_query_std');
+    this._flowActionPostQuery.registerRunListener(async (args, state) => {
+            return args.device.postQuery(args);
+    });
 
     // Register Flow-Condition-Listener
     this._flowConditionQueryResultNumberEqual = this.homey.flow.getConditionCard("is_query_result_number_equal")

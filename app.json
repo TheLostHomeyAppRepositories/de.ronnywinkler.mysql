@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "de.ronnywinkler.mysql",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -401,18 +401,17 @@
     ],
     "actions": [
       {
-        "id": "post_query",
         "title": {
-          "en": "Execute SQL query.",
-          "de": "SQL-Befehl ausführen."
+          "en": "Execute SQL query in AdvancedFlow.",
+          "de": "SQL-Befehl ausführen in AdvancedFlow."
         },
         "titleFormatted": {
           "en": "Executes the SQL query with ID [[id]]: [[query]].",
           "de": "Führt den SQL-Befehl mit ID [[id]] aus: [[query]]."
         },
         "hint": {
-          "en": "Use this action for SQL querys. An ID must be specified to evaluate the result. In the flow event, the response can be read via the Query ID. Use '[date-1d]', '[date-1m]' oder '[date-1y]' for calculation of a date based on the current date using a positive/negative difference in days, moths or years.",
-          "de": "Verwende diese Aktion für SQL-Abfragen. Zum Auswerten des Ergebnisses muss kann eine ID angegeben werden. Im Flow-Ereignis kann die Antwort über die Abfrage-ID gelesen werden. Verwende '[date-1d]', '[date-1m]' oder '[date-1y]' für die Berechnung eines Datums auf Basis des aktuellen Datums unter Verwendung der positiven/negativen Differenz in Tagen, Monaten oder Jahren."
+          "en": "Use this action for SQL querys in AdvancedFlows and get the result as flow tag. An ID must be specified to evaluate the result. In the flow event, the response can be read via the Query ID. Use '[date-1d]', '[date-1m]' oder '[date-1y]' for calculation of a date based on the current date using a positive/negative difference in days, moths or years.",
+          "de": "Verwende diese Aktion für SQL-Abfragen in AdvancedFlows und erhalte das Ergebnis als FLow-Tag. Zum Auswerten des Ergebnisses muss kann eine ID angegeben werden. Im Flow-Ereignis kann die Antwort über die Abfrage-ID gelesen werden. Verwende '[date-1d]', '[date-1m]' oder '[date-1y]' für die Berechnung eines Datums auf Basis des aktuellen Datums unter Verwendung der positiven/negativen Differenz in Tagen, Monaten oder Jahren."
         },
         "args": [
           {
@@ -517,7 +516,53 @@
               "de": "Information"
             }
           }
-        ]
+        ],
+        "id": "post_query"
+      },
+      {
+        "title": {
+          "en": "Execute SQL query.",
+          "de": "SQL-Befehl ausführen."
+        },
+        "titleFormatted": {
+          "en": "Executes the SQL query with ID [[id]]: [[query]].",
+          "de": "Führt den SQL-Befehl mit ID [[id]] aus: [[query]]."
+        },
+        "hint": {
+          "en": "Use this action for SQL querys. An ID must be specified to evaluate the result. In the flow event, the response can be read via the Query ID. Use '[date-1d]', '[date-1m]' oder '[date-1y]' for calculation of a date based on the current date using a positive/negative difference in days, moths or years.",
+          "de": "Verwende diese Aktion für SQL-Abfragen. Zum Auswerten des Ergebnisses muss kann eine ID angegeben werden. Im Flow-Ereignis kann die Antwort über die Abfrage-ID gelesen werden. Verwende '[date-1d]', '[date-1m]' oder '[date-1y]' für die Berechnung eines Datums auf Basis des aktuellen Datums unter Verwendung der positiven/negativen Differenz in Tagen, Monaten oder Jahren."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=db"
+          },
+          {
+            "name": "query",
+            "type": "text",
+            "placeholder": {
+              "en": "INSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...);"
+            },
+            "title": {
+              "en": "SQL query",
+              "de": "SQL-Befehl"
+            }
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "placeholder": {
+              "en": "Query ID",
+              "de": "Abfrage-ID"
+            },
+            "title": {
+              "en": "ID",
+              "de": "ID"
+            }
+          }
+        ],
+        "id": "post_query_std"
       }
     ]
   },

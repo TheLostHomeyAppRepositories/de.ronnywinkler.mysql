@@ -46,5 +46,13 @@
   "0.0.12": {
     "en": "Added exception for flow action 'Execute SQL query' to use in advanced Flows.",
     "de": "Fehlermeldung für Flow-Aktion 'SQL-Befehl ausführen' ergänzt zur Verwendung in Advanced Flows."
+  },
+  "0.0.13": {
+    "en": "Added second flow action 'Execute SQL query' for standard flows.",
+    "de": "Zweite Flow-Aktion 'SQL-Befehl ausführen' für Standard-Flows ergänzt."
+  },
+  "0.0.14": {
+    "en": "Added second flow action 'Execute SQL query' for standard flows.",
+    "de": "Zweite Flow-Aktion 'SQL-Befehl ausführen' für Standard-Flows ergänzt."
   }
 }
