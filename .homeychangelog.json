@@ -54,5 +54,9 @@
   "0.0.14": {
     "en": "Added second flow action 'Execute SQL query' for standard flows.",
     "de": "Zweite Flow-Aktion 'SQL-Befehl ausführen' für Standard-Flows ergänzt."
+  },
+  "0.0.15": {
+    "en": "Added second flow action 'Execute SQL query' for standard flows.",
+    "de": "Zweite Flow-Aktion 'SQL-Befehl ausführen' für Standard-Flows ergänzt."
   }
 }
