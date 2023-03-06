@@ -34,23 +34,27 @@
         });
 
     }
-  </script>
+</script>
 
-<div id="dbSetup" class="tabcontent">
-    <fieldset>
-        <legend><span data-i18n="pair.db.server_settings"></span></legend>
-        <div class="field row">
-            <label for="host"><span data-i18n="pair.db.host"></span></label>
-            <input id="host" type="text" value="" oninput="settingsChanged()"/>
-            <label for="port"><span data-i18n="pair.db.port"></span></label>
-            <input id="port" type="text" value="" oninput="settingsChanged()"/>
-            <label for="user"><span data-i18n="pair.db.user"></span></label>
-            <input id="user" type="text" value="" oninput="settingsChanged()"/>
-            <label for="pw"><span data-i18n="pair.db.pw"></span></label>
-            <input id="pw" type="password" value="" oninput="settingsChanged()"/>
-        </div>
-    </fieldset>
-    <fieldset>
-        <p><button id="check" class="left" onclick="check()"><span data-i18n="pair.db.check"></span></button></p>
-    </fieldset>
-</div>
+<fieldset class="homey-form-fieldset">
+    <legend class="homey-form-legend"><span data-i18n="pair.db.server_settings"></span></legend>
+    <div class="homey-form-group">
+        <label for="host" class="homey-form-label"><span data-i18n="pair.db.host"></span></label>
+        <input id="host" class="homey-form-input" type="text" value="" oninput="settingsChanged()"/>
+    </div>
+    <div class="homey-form-group">
+        <label for="port" class="homey-form-label"><span data-i18n="pair.db.port"></span></label>
+        <input id="port" class="homey-form-input" type="text" value="" oninput="settingsChanged()"/>
+    </div>
+    <div class="homey-form-group">
+        <label for="user" class="homey-form-label"><span data-i18n="pair.db.user"></span></label>
+        <input id="user" class="homey-form-input" type="text" value="" oninput="settingsChanged()"/>
+    </div>
+    <div class="homey-form-group">
+        <label for="pw" class="homey-form-label"><span data-i18n="pair.db.pw"></span></label>
+        <input id="pw" class="homey-form-input" type="password" value="" oninput="settingsChanged()"/>
+    </div>
+</fieldset>
+<fieldset class="homey-form-fieldset">
+    <p><button id="check" class="homey-button-secondary-shadow" onclick="check()"><span data-i18n="pair.db.check"></span></button></p>
+</fieldset>

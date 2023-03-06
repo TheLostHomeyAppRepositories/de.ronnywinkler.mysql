@@ -62,5 +62,13 @@
   "0.0.16": {
     "en": "Added second flow action 'Execute SQL query' for standard flows. Fix for hints/descriptions.",
     "de": "Zweite Flow-Aktion 'SQL-Befehl ausführen' für Standard-Flows ergänzt. Korrektur der Bezeichnungen."
+  },
+  "1.0.0": {
+    "en": "Adjusted pair view style.",
+    "de": "Verbindungsdialog-Stil angepasst."
+  },
+  "1.0.1": {
+    "en": "Adjusted pair view style.",
+    "de": "Verbindungsdialog-Stil angepasst."
   }
 }

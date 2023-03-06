@@ -1,7 +1,7 @@
 {
   "id": "de.ronnywinkler.mysql",
-  "version": "0.0.16",
-  "compatibility": ">=5.0.0",
+  "version": "1.0.1",
+  "compatibility": ">=8.1.1",
   "sdk": 3,
   "name": {
     "en": "MySQL",
