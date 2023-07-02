@@ -1,6 +1,6 @@
 {
   "id": "de.ronnywinkler.mysql",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "compatibility": ">=8.1.1",
   "sdk": 3,
   "name": {

@@ -6,7 +6,7 @@
     },
     "titleFormatted":{
         "en": "The SQL query was executed with id [[id]].",
-        "de": "Die SQl-Abfrage mit ID [[id]] wurde ausgeführt."
+        "de": "Die SQL-Abfrage mit ID [[id]] wurde ausgeführt."
     },
     "hint": {
         "en": "Triggers when the SQL query was executed and delivers the result as token. The execution can be filtered by Query ID.",
