@@ -52,6 +52,7 @@ class db extends Homey.Device {
     async postQuery(args, trigger = true){
         this.log("Action post_query started.");
         this.log("SQL query: " + args.query);
+        let parsedQuery = '';
         let settings = {
             host: this.getStoreValue('host'),
             port: this.getStoreValue('port'),
@@ -61,7 +62,7 @@ class db extends Homey.Device {
         };
         try{
             let query = args.query;
-            let parsedQuery = this.parseQuery(query);
+            parsedQuery = this.parseQuery(query);
             this.log("Modified Query: " + parsedQuery)
             let result = await mysqlApi.query(settings, parsedQuery);
             this.log("Result: ");
@@ -73,7 +74,22 @@ class db extends Homey.Device {
         }
         catch (error){
             this.log("Error: "+error.message);
-            let message =   this.homey.__('query.db') +
+
+            let tz  = this.homey.clock.getTimezone();
+            let now = new Date().toLocaleString('en-US', 
+            { 
+                hour12: false, 
+                timeZone: tz,
+                hour: "2-digit",
+                minute: "2-digit",
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+            });
+
+            let message = now;
+
+            message = message + ' ' + this.homey.__('query.db') +
                             ' "' + settings.db + '"';
             if (args.id){
                 message = message + ' Query-ID "' + args.id + '"';
@@ -82,6 +98,9 @@ class db extends Homey.Device {
                             ': ' +
                             this.homey.__('query.error') + 
                             ': '+ error.message;
+
+            message = message + ' Query: '+ parsedQuery;
+
             this.homey.notifications.createNotification({excerpt: message }).catch(error => {this.error('Error sending notification: '+error.message)});
             throw new Error(message);
         }
@@ -111,12 +130,12 @@ class db extends Homey.Device {
 
     getTargetDate(string){
         let tz  = this.homey.clock.getTimezone();
-        let now = new Date().toLocaleString('en-US', 
+        let now = new Date().toLocaleDateString('en-US', 
         { 
             hour12: false, 
             timeZone: tz,
-            hour: "2-digit",
-            minute: "2-digit",
+            // hour: "2-digit",
+            // minute: "2-digit",
             day: "2-digit",
             month: "2-digit",
             year: "numeric"
@@ -158,13 +177,14 @@ class db extends Homey.Device {
         { 
             hour12: false, 
             // timeZone: tz,
-            hour: "2-digit",
-            minute: "2-digit",
+            // hour: "2-digit",
+            // minute: "2-digit",
             day: "2-digit",
             month: "2-digit",
             year: "numeric"
         });
-        let date = newDateStr.split(", ")[0];
+        // let date = newDateStr.split(", ")[0];
+        let date = newDateStr;
         date = date.split("/")[2] + "-" + date.split("/")[0] + "-" + date.split("/")[1]; 
         return date;
     }

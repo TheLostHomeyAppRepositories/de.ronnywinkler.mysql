@@ -74,5 +74,13 @@
   "1.0.2": {
     "en": "Adjusted flow card titles.",
     "de": "Titel der Flowkarten angepasst."
+  },
+  "1.0.3": {
+    "en": "Extended error message in timeline.",
+    "de": "Fehlernachricht in Zeitleiste erweitert."
+  },
+  "1.0.4": {
+    "en": "Workaround for wrong time conversion (UTC->local) in date variable '[date-1d]'.",
+    "de": "Workaround für falsche Zeitkonvertierung (UTC->lokal) in Datumsvariable '[date-1d]'."
   }
 }
