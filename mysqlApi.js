@@ -3,8 +3,9 @@
 const  mysql = require('mysql2/promise');
 
 async function checkConnection(settings){
+    let connection;
     try{
-        let connection = await mysql.createConnection({
+        connection = await mysql.createConnection({
             host     : settings.host,
             port     : settings.port,
             user     : settings.user,
@@ -13,15 +14,20 @@ async function checkConnection(settings){
 
         await connection.connect();
         await connection.ping();     
-        await connection.end();   
-        return true;
     }
     catch (error){
         throw error;
     }
-}
+    finally {
+      if (connection != undefined){ 
+        await connection.end();
+      }
+    }
+    return true;
+  }
 
 async function getDatabases(settings){
+    let connection;
     try{
         let connection = await mysql.createConnection({
             host     : settings.host,
@@ -38,9 +44,16 @@ async function getDatabases(settings){
     catch (error){
         throw error;
     }
+    finally {
+      if (connection != undefined){ 
+        await connection.end();
+      }
+    }
 }
 
 async function query(settings, query){
+    let connection;
+    let result;
     try{
         let connection = await mysql.createConnection({
             host     : settings.host,
@@ -51,13 +64,17 @@ async function query(settings, query){
         });
 
         await connection.connect();
-        let result = await connection.query(query);  
-        await connection.end();   
-        return result;
+        result = await connection.query(query);  
     }
     catch (error){
         throw error;
     }
+    finally {
+      if (connection != undefined){ 
+        await connection.end();
+      }
+    }
+    return result;
 }
 
 exports.getDatabases = getDatabases;
