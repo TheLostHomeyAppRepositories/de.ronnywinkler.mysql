@@ -29,7 +29,7 @@ async function checkConnection(settings){
 async function getDatabases(settings){
     let connection;
     try{
-        let connection = await mysql.createConnection({
+        connection = await mysql.createConnection({
             host     : settings.host,
             port     : settings.port,
             user     : settings.user,
@@ -55,7 +55,7 @@ async function query(settings, query){
     let connection;
     let result;
     try{
-        let connection = await mysql.createConnection({
+        connection = await mysql.createConnection({
             host     : settings.host,
             port     : settings.port,
             user     : settings.user,
