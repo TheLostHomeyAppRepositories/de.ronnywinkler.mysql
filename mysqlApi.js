@@ -28,6 +28,7 @@ async function checkConnection(settings){
 
 async function getDatabases(settings){
     let connection;
+    let databases;
     try{
         connection = await mysql.createConnection({
             host     : settings.host,
@@ -37,9 +38,7 @@ async function getDatabases(settings){
         });
 
         await connection.connect();
-        let databases = await connection.query("SHOW DATABASES");  
-        await connection.end();   
-        return databases;
+        databases = await connection.query("SHOW DATABASES");  
     }
     catch (error){
         throw error;
@@ -47,9 +46,12 @@ async function getDatabases(settings){
     finally {
       if (connection != undefined){ 
         await connection.end();
+        connection.destroy();
+        connection = null; 
       }
     }
-}
+    return databases;
+  }
 
 async function query(settings, query){
     let connection;
@@ -72,6 +74,8 @@ async function query(settings, query){
     finally {
       if (connection != undefined){ 
         await connection.end();
+        connection.destroy();
+        connection = null; 
       }
     }
     return result;

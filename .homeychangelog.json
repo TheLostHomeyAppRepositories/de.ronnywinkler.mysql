@@ -90,5 +90,9 @@
   "1.0.6": {
     "en": "Fixed connection closing.",
     "de": "Verbindung beenden korrigiert."
+  },
+  "1.0.7": {
+    "en": "Fixed connection closing in pair view.",
+    "de": "Verbindung beenden korrigiert im Pair-Dialog."
   }
 }
