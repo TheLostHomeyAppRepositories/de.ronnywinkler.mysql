@@ -32,6 +32,63 @@ class dbDriver extends Homey.Driver {
 
     } // end onPair
 
+    onRepair(session, device) {
+        this.log("onRepair()");
+        this.settingsData = device.getStore();
+      
+        session.setHandler("check", async (data) => {
+            return await this.onCheck(data);
+        });
+
+        session.setHandler("settingsChanged", async (data) => {
+            return await this.onSettingsChanged(data);
+        });
+
+        session.setHandler("list_devices", async () => {
+            return await this.onPairListDevices(session);
+        });
+
+        session.setHandler("getSettings", async () => {
+            this.log("getSettings: ");
+            this.log(this.settingsData);
+            return this.settingsData;
+        });
+
+        session.setHandler('list_devices_selection', async (data) => {
+            this.log("handler: list_devices_selection");
+            return await this.onListDeviceSelection(session, data);
+        });
+
+        session.setHandler('showView', async (view) => {
+            if (view === 'update_device') {
+                await this.updateDevice(device, {
+                            host: this.selectedDevice.store.host,
+                            port: this.selectedDevice.store.port,
+                            user: this.selectedDevice.store.user,
+                            pw: this.selectedDevice.store.pw,
+                            db: this.selectedDevice.store.db
+                        });
+                await session.nextView();
+            }
+        });
+
+    } // end onPair
+
+    async updateDevice(device, settings){
+        await device.setStoreValue('host', settings.host);
+        await device.setStoreValue('port', settings.port);
+        await device.setStoreValue('user', settings.user);
+        await device.setStoreValue('pw', settings.pw);
+        await device.setStoreValue('db', settings.db);
+    }
+
+    async onListDeviceSelection(session, data){
+        this.log("handler: list_devices_selection: ");
+        this.log(data);
+        this.selectedDevice = data[0];
+        return;
+    }
+
     async onCheck(data){
         this.log("Event Check: ");
         this.log(data);

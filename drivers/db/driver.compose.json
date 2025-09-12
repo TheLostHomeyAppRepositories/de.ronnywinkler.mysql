@@ -32,5 +32,32 @@
             "id": "add_my_devices",
             "template": "add_devices"
         }
+    ],
+    "repair": [{
+        "id": "server",
+        "navigation": {
+            "next": "list_devices"
+          }
+        },
+        {
+            "id": "list_devices",
+            "template": "list_devices",
+            "navigation": {
+                "next": "update_device",
+                "prev": "server"
+            },
+            "options": { "singular": true }
+        },
+        {
+            "id": "update_device",
+            "template": "loading",
+            "navigation": {
+                "prev": "list_devices"
+            }
+        },
+        {
+            "id": "done",
+            "template": "done"
+        }
     ]
 }

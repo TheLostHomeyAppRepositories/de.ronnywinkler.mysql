@@ -94,5 +94,9 @@
   "1.0.7": {
     "en": "Fixed connection closing in pair view.",
     "de": "Verbindung beenden korrigiert im Pair-Dialog."
+  },
+  "1.1.0": {
+    "en": "Added repair view to update DB connection.",
+    "de": "Reparatur zum Aktualisieren der DB-Verbindung hinzugefügt."
   }
 }
